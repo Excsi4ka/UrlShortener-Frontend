@@ -1,10 +1,16 @@
 .login-page {
     min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: start;
     flex-direction: column;
     box-sizing: border-box; /* includes the padding and the border */
+}
+
+.login-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding: 5rem 5rem 5rem 5rem;
 }
 
 .oauth-card {
@@ -16,8 +22,7 @@
     border-radius: 2rem;
     gap: 1rem;
     box-shadow: 0 2px 12px rgb(51 50 50 / 0.87);
-    margin: 5rem;
-    width: min(100% - 2rem, 26rem);
+    width: min(100% - 4rem, 26rem);
 }
 
 .login-text-top {

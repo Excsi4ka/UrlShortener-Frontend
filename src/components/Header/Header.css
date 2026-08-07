@@ -1,8 +1,11 @@
-.header{
-    height: 5rem;
-    background-color: #F8FAFCE6;
-    border-bottom: 2px solid #e2e8f0;
+.header {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 5rem;
+    background-color: rgb(12 36 108 / 0.9);
     display: flex;
+    position: sticky;
+    top: 0;
     align-items: center;
     justify-content: space-between;
     padding-right: 2rem;
@@ -10,8 +13,8 @@
 }
 
 .header-text {
-    color: #000000;
+    color: #ffffff;
     margin: 0;
-    font-size: 1rem;
+    font-size: 2rem;
     font-weight: bold;
 }

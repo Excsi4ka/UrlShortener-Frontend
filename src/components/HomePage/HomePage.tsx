@@ -6,7 +6,12 @@ export default function HomePage() {
     return (
         <main className="home-page">
             <Header/>
-            <section className="content-box">
+            <section className="home-content">
+                <section className="url-shortening">
+
+                </section>
+            </section>
+            <section className="home-content">
                 <section className="url-shortening">
 
                 </section>
