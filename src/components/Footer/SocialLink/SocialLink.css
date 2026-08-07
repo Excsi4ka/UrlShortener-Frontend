@@ -1,0 +1,29 @@
+.social-link-button {
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    padding: 0.5rem;
+    background-color: rgb(255 255 255 / 0);
+}
+
+.social-link-anchor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.social-link-anchor:visited {
+    color: #ffffff;
+}
+
+.social-link-anchor:hover {
+    text-decoration: underline;
+}
+
+.social-link-anchor-image {
+    width: 2rem;
+    height: 2rem;
+}

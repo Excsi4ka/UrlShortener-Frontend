@@ -1,0 +1,30 @@
+.oauth-button {
+    border: #707070 1px solid;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    padding: 0.75rem;
+    background-color: #ffffff;
+}
+
+.oauth-button:hover {
+    background: #dadada;
+}
+
+.oauth-anchor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: #000000;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.oauth-anchor:visited {
+    color: #000000;
+}
+
+.oauth-anchor-image {
+    width: 4rem;
+    height: 4rem;
+}
