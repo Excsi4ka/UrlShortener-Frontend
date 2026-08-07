@@ -4,11 +4,10 @@
     align-items: center;
     justify-content: start;
     flex-direction: column;
-    padding-top: 5rem;
     box-sizing: border-box; /* includes the padding and the border */
 }
 
-.oauth-list {
+.oauth-card {
     background: #ffffff;
     display: flex;
     flex-direction: column;
@@ -17,6 +16,8 @@
     border-radius: 2rem;
     gap: 1rem;
     box-shadow: 0 2px 12px rgb(51 50 50 / 0.87);
+    margin: 5rem;
+    width: min(100% - 2rem, 26rem);
 }
 
 .login-text-top {
@@ -30,5 +31,6 @@
 .login-text-bottom {
     margin: 0;
     color: #0c246c;
+    text-align: center;
     font-size: 1rem;
 }

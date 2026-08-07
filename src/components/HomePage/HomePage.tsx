@@ -6,8 +6,10 @@ export default function HomePage() {
     return (
         <main className="home-page">
             <Header/>
-            <section className="content">
+            <section className="content-box">
+                <section className="url-shortening">
 
+                </section>
             </section>
             <Footer/>
         </main>

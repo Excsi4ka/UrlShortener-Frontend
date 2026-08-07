@@ -10,7 +10,7 @@ export default function LoginPage() {
 
     return (
         <main className="login-page">
-            <section className="oauth-list">
+            <section className="oauth-card">
                 <h1 className="login-text-top">Sign in</h1>
                 <h2 className="login-text-bottom">Create short links and view analytics after signing in!</h2>
                 <OAuthButton name="Google" href={OAuthPath + "google"} imageUrl={GoogleIcon}/>

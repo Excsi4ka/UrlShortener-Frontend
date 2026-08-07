@@ -2,11 +2,12 @@
     display: flex;
     background-color: #0c246c;
     margin-top: auto;
-    height: 4rem;
-    width: 100vw;
+    min-height: 4rem;
+    width: 100%;
     justify-content: start;
     align-items: center;
     gap: 1rem;
-    padding: 2rem 2rem 2rem 1rem;
+    padding-left: 1rem;
+    flex-wrap: wrap;
     box-sizing: border-box; /* includes the padding and the border */
 }
