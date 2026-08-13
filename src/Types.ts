@@ -46,6 +46,7 @@ export type DashboardLink = {
     longUrl: string;
     dateCreated: string;
     totalClicks: number;
+    todayClicks: number;
     ownerId: number;
     dailyClicks: DailyClickBucket[];
 }

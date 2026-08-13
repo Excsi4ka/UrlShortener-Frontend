@@ -34,6 +34,7 @@ function normalizeDashboardLink(data: unknown): DashboardLink | null {
         longUrl: link.longUrl,
         dateCreated: link.dateCreated,
         totalClicks: link.totalClicks,
+        todayClicks: 0,
         ownerId: link.ownerId,
         dailyClicks: [],
     };
@@ -193,14 +194,15 @@ export async function fetchDashboardLinkCountryAnalytics(shortUrl: string): Prom
     return normalizeCountryClickBuckets(await response.json());
 }
 
-export async function fetchDashboardLinkAnalytics(shortUrl: string): Promise<DashboardLink | null> {
+export async function fetchDashboardLinkAnalytics(shortUrl: string, days = 30): Promise<DashboardLink | null> {
     if (!isValidShortUrl(shortUrl)) {
         return null;
     }
 
-    const [links, dailyClicks, totalClicks] = await Promise.all([
+    const [links, dailyClicks, todayClickBuckets, totalClicks] = await Promise.all([
         fetchDashboardLinks(),
-        fetchDashboardDailyClicks(shortUrl),
+        fetchDashboardDailyClicks(shortUrl, days),
+        fetchDashboardDailyClicks(shortUrl, 1),
         fetchDashboardLinkTotalClicks(shortUrl),
     ]);
     const selectedLink = links.find((link) => link.shortUrl === shortUrl);
@@ -212,6 +214,7 @@ export async function fetchDashboardLinkAnalytics(shortUrl: string): Promise<Das
     return {
         ...selectedLink,
         totalClicks,
+        todayClicks: todayClickBuckets.reduce((sum, bucket) => sum + bucket.clicks, 0),
         dailyClicks,
     };
 }

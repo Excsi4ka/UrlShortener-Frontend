@@ -100,7 +100,45 @@
     grid-column: 1 / -1;
 }
 
+.chart-range-actions {
+    background: #edf3ff;
+    border-radius: 999px;
+    display: flex;
+    flex: 0 0 auto;
+    padding: 0.25rem;
+}
+
+.chart-range-button {
+    background: transparent;
+    border: 0;
+    border-radius: 999px;
+    color: #60708a;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 800;
+    padding: 0.45rem 0.7rem;
+}
+
+.chart-range-button.active {
+    background: #0c246c;
+    color: #ffffff;
+}
+
 .analytics-secondary-panel {
+    min-height: 16rem;
+}
+
+.analytics-empty-state {
+    align-items: center;
+    background: #f7faff;
+    border: 1px dashed rgb(12 36 108 / 0.14);
+    border-radius: 0.85rem;
+    color: #60708a;
+    display: flex;
+    font-size: 0.9rem;
+    font-weight: 800;
+    justify-content: center;
     min-height: 16rem;
 }
 

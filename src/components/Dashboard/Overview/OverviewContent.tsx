@@ -40,7 +40,7 @@ export default function OverviewContent() {
     }, []);
 
     const topPerformingLinks = useMemo(
-        () => [...links].sort((a, b) => b.totalClicks - a.totalClicks).slice(0, 3),
+        () => [...links].sort((a, b) => b.totalClicks - a.totalClicks).slice(0, 10),
         [links],
     );
 
