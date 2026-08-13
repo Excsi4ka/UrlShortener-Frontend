@@ -1,0 +1,28 @@
+.dashboard-view-header {
+    background: #ffffff;
+    border: 1px solid rgb(12 36 108 / 0.1);
+    border-radius: 1rem;
+    box-shadow: 0 0.75rem 1.75rem rgb(12 36 108 / 0.07);
+    padding: 1.5rem;
+}
+
+.dashboard-eyebrow {
+    color: #2556b8;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.dashboard-view-header h1 {
+    color: #0c246c;
+    font-size: 3rem;
+    line-height: 1.05;
+    margin: 0.35rem 0 0;
+}
+
+.dashboard-view-header p:last-child {
+    color: #60708a;
+    margin: 0.65rem 0 0;
+}

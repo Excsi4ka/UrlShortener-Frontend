@@ -1,0 +1,114 @@
+.dashboard-link-row {
+    align-items: center;
+    background: #f7faff;
+    border: 1px solid rgb(12 36 108 / 0.08);
+    border-radius: 0.85rem;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: space-between;
+    min-width: 0;
+    padding: 0.85rem;
+}
+
+.dashboard-link-row.selected {
+    background: #eaf1ff;
+    border-color: rgb(37 86 184 / 0.35);
+}
+
+.dashboard-link-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.dashboard-link-title {
+    color: #10213f;
+    font-weight: 800;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dashboard-short-link {
+    color: #2556b8;
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-top: 0.2rem;
+    overflow: hidden;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dashboard-short-link:hover {
+    text-decoration: underline;
+}
+
+.dashboard-link-actions {
+    align-items: center;
+    display: flex;
+    flex: 0 0 auto;
+    gap: 0.55rem;
+}
+
+.dashboard-click-count {
+    color: #0c246c;
+    font-weight: 900;
+    min-width: 2rem;
+    text-align: right;
+}
+
+.analytics-button {
+    align-items: center;
+    background: rgb(12 36 108 / 0.08);
+    border: 0;
+    border-radius: 999px;
+    color: #0c246c;
+    cursor: pointer;
+    display: inline-flex;
+    height: 2.35rem;
+    justify-content: center;
+    position: relative;
+    width: 2.35rem;
+}
+
+.analytics-button:hover,
+.analytics-button[aria-pressed="true"] {
+    background: #0c246c;
+    color: #ffffff;
+}
+
+.analytics-icon {
+    background-color: currentColor;
+    display: inline-block;
+    height: 1.25rem;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    width: 1.25rem;
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+}
+
+.analytics-tooltip {
+    background: #10213f;
+    border-radius: 0.5rem;
+    bottom: calc(100% + 0.5rem);
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    opacity: 0;
+    padding: 0.4rem 0.55rem;
+    pointer-events: none;
+    position: absolute;
+    transform: translateY(0.25rem);
+    transition: opacity 160ms ease, transform 160ms ease;
+    white-space: nowrap;
+    z-index: 2;
+}
+
+.analytics-button:hover .analytics-tooltip {
+    opacity: 1;
+    transform: translateY(0);
+}

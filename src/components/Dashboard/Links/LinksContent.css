@@ -1,0 +1,23 @@
+.sort-actions {
+    background: #edf3ff;
+    border-radius: 999px;
+    display: flex;
+    padding: 0.25rem;
+}
+
+.sort-button {
+    background: transparent;
+    border: 0;
+    border-radius: 999px;
+    color: #60708a;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 800;
+    padding: 0.45rem 0.7rem;
+}
+
+.sort-button.active {
+    background: #0c246c;
+    color: #ffffff;
+}

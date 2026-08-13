@@ -2,17 +2,11 @@ import {createContext, useContext, useEffect, useState, type ReactNode} from "re
 import type {AuthContext, User} from "./Types.ts";
 import {useNavigate} from "react-router";
 
-const dummyAuth: AuthContext = {
-    loggedIn: false,
-    csrfToken: "",
-    user: null,
-    logout: async () => {}
-}
-
-const Context = createContext<AuthContext>(dummyAuth);
+const Context = createContext<AuthContext | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
     const [loggedIn, setLoggedIn] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [csrfToken, setCsrfToken] = useState("");
     const [user, setUser] = useState<User | null>(null);
     const navigate = useNavigate();
@@ -29,12 +23,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                     return;
                 }
 
-                const data: {token: string} = await csrfResponse.json();
+                const data: { token: string } = await csrfResponse.json();
+                setCsrfToken(data.token);
 
                 const authResponse = await fetch("/v1/auth/me", {
                     credentials: "include",
                     headers: {
-                        "X-CSRF-Token": data.token,
+                        "X-XSRF-Token": data.token,
                     }
                 });
 
@@ -47,48 +42,70 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                 const user: User = await authResponse.json();
 
                 setLoggedIn(true);
-                setCsrfToken(data.token);
                 setUser(user);
 
             } catch (error) {
-                console.error(error);
+                console.error("Authentication error", error);
                 setLoggedIn(false);
                 setCsrfToken("");
                 setUser(null);
+            } finally {
+                setLoading(false);
             }
         }
 
-        authFunc();
+        void authFunc();
 
     }, []);
 
     const logoutFunc = async () => {
         try {
-            await fetch("/v1/auth/logout", {
+            await fetch("/logout", {
+                method: "POST",
                 credentials: "include",
                 headers: {
-                    "X-CSRF-Token": csrfToken,
+                    "X-XSRF-Token": csrfToken,
                 }
             });
+
             navigate("/");
         } catch (error) {
             console.error(error);
+        } finally {
+            setLoggedIn(false);
+            setLoading(false);
+            setCsrfToken("");
+            setUser(null);
         }
     }
 
     const appAuthContext: AuthContext = {
         loggedIn: loggedIn,
+        loading: loading,
         csrfToken: csrfToken,
         user: user,
         logout: logoutFunc
     }
 
-    return <Context.Provider value={appAuthContext}>
-        {children}
-    </Context.Provider>;
+    //app blank while loading
+    if (loading) {
+        return <></>;
+    }
+
+    return (
+        <Context.Provider value={appAuthContext}>
+            {children}
+        </Context.Provider>
+    );
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
 export function useAuthContext(): AuthContext {
-    return useContext(Context);
+    const context = useContext(Context);
+
+    if (context === null) {
+        throw new Error("useAuthContext must be used inside AuthProvider component");
+    }
+
+    return context;
 }

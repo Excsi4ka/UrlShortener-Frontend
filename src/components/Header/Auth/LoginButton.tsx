@@ -3,7 +3,7 @@ import "./LoginButton.css"
 
 export default function LoginButton() {
     return (
-        <Link className="login-button" to={"/login"}>
+        <Link className="user-banner" to={"/login"}>
             Sign in
         </Link>
     )

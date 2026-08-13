@@ -1,0 +1,35 @@
+.overview-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.overview-card {
+    background: linear-gradient(135deg, #0c246c 0%, #173b9a 100%);
+    border-radius: 1rem;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    min-width: 0;
+    padding: 1.25rem;
+    grid-column: 1 / -1;
+}
+
+.overview-card span {
+    color: #bcd0ff;
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.overview-card strong {
+    font-size: 2.4rem;
+    line-height: 1;
+}
+
+@media (max-width: 760px) {
+    .overview-grid {
+        grid-template-columns: 1fr;
+    }
+}

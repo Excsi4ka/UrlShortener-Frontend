@@ -2,19 +2,82 @@
     width: 100%;
     box-sizing: border-box;
     min-height: 5rem;
-    background-color: rgb(12 36 108 / 0.9);
+    background-color: #0c246c;
     display: flex;
     position: sticky;
     top: 0;
+    z-index: 10;
     align-items: center;
     justify-content: space-between;
-    padding-right: 2rem;
-    padding-left: 2rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    box-shadow: 0 0.5rem 1.5rem rgb(12 36 108 / 0.18);
+}
+
+.banner-button {
+    display: flex;
+}
+.banner-button-image {
+    width: 3rem;
+    height: 3rem;
 }
 
 .header-text {
     color: #ffffff;
     margin: 0;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
+}
+
+.header-actions {
+    align-items: center;
+    display: flex;
+    gap: 0.75rem;
+}
+
+.user-banner {
+    align-items: center;
+    background: rgb(255 255 255 / 0.1);
+    border: 1px solid rgb(255 255 255 / 0.18);
+    border-radius: 999px;
+    color: #ffffff;
+    display: flex;
+    gap: 0.55rem;
+    max-width: 15rem;
+    padding: 0.5rem;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: bolder;
+    text-align: center;
+    cursor: pointer;
+}
+
+.user-banner:hover {
+    background: rgb(255 255 255 / 0.16);
+}
+
+.user-banner-image {
+    border-radius: 999px;
+    height: 2rem;
+    object-fit: cover;
+    width: 2rem;
+}
+
+.user-banner-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+    .header {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .user-banner-name {
+        display: none;
+    }
 }

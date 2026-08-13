@@ -6,7 +6,7 @@ import OAuthButton from "./OAuthButton/OAuthButton.tsx";
 import Footer from "../Footer/Footer.tsx";
 
 export default function LoginPage() {
-    const OAuthPath: string = "/oauth/authorization/";
+    const OAuthPath: string = "/oauth2/authorization/";
 
     return (
         <main className="login-page">
