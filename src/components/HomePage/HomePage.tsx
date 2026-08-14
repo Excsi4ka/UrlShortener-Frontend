@@ -12,6 +12,14 @@ export default function HomePage() {
     const [shortUrl, setShortUrl] = useState("");
     const [message, setMessage] = useState("");
     const [submitting, setSubmitting] = useState(false);
+    const [copied, setCopied] = useState(false);
+    const shortLinkUrl = shortUrl.startsWith("http") ? shortUrl : `${window.location.origin}/${shortUrl}`;
+
+    const copyShortLink = async () => {
+        await navigator.clipboard.writeText(shortLinkUrl);
+        setCopied(true);
+        window.setTimeout(() => setCopied(false), 1600);
+    };
 
     const shortenUrl = async () => {
         if (!loggedIn) {
@@ -27,6 +35,7 @@ export default function HomePage() {
         setSubmitting(true);
         setMessage("");
         setShortUrl("");
+        setCopied(false);
 
         try {
             const response = await fetch("/v1/shorten", {
@@ -88,7 +97,15 @@ export default function HomePage() {
                             {shortUrl ? (
                                 <>
                                     <span>Your short link:</span>
-                                    <a href={shortUrl}>{shortUrl}</a>
+                                    <a href={shortLinkUrl}>{shortLinkUrl}</a>
+                                    <button
+                                        className="copy-short-link-button"
+                                        onClick={copyShortLink}
+                                        type="button"
+                                        aria-label={`Copy ${shortLinkUrl}`}
+                                    >
+                                        {copied ? "Copied" : "Copy"}
+                                    </button>
                                 </>
                             ) : (
                                 <span>{message}</span>

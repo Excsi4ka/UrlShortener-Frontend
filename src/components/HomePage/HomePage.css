@@ -119,4 +119,20 @@
     font-weight: 800;
 }
 
+.copy-short-link-button {
+    background: rgb(37 86 184 / 0.1);
+    border: 0;
+    border-radius: 999px;
+    color: #2556b8;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 900;
+    padding: 0.35rem 0.65rem;
+    text-transform: uppercase;
+}
 
+.copy-short-link-button:hover {
+    background: #0c246c;
+    color: #ffffff;
+}
