@@ -41,6 +41,13 @@ export type CountryClickBucket = {
     clicks: number;
 }
 
+export type ListLink = {
+    shortUrl: string;
+    longUrl: string;
+    creationDate: string;
+    clicks: number;
+}
+
 export type DashboardLink = {
     shortUrl: string;
     longUrl: string;
@@ -61,7 +68,10 @@ export type DashboardViewHeaderProps = {
 }
 
 export type LinkRowProps = {
-    link: DashboardLink;
+    shortUrl: string;
+    longUrl: string;
+    dateCreated: string;
+    clicks: number;
     selected: boolean;
     onAnalyticsClick: () => void;
 }

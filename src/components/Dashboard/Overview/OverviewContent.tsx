@@ -1,64 +1,50 @@
 import {useEffect, useMemo, useState} from "react";
 import {useNavigate} from "react-router";
-import type {DashboardLink, DashboardOverviewTotals} from "../../../Types.ts";
+import type {ListLink} from "../../../Types.ts";
 import DashboardViewHeader from "../DashboardViewHeader/DashboardViewHeader.tsx";
 import LinkRow from "../LinkRow/LinkRow.tsx";
-import {fetchDashboardLinks} from "../../../Api.ts";
+import {fetchTodaysTopLink} from "../../../Api.ts";
 import "./OverviewContent.css"
 
 export default function OverviewContent() {
-    const [links, setLinks] = useState<DashboardLink[]>([]);
-    const [totals, setTotals] = useState<DashboardOverviewTotals>({
-        totalClicks: 0,
-    });
+    const [links, setLinks] = useState<ListLink[]>([]);
+    const [totals, setTotals] = useState(0);
     const navigate = useNavigate();
 
     useEffect(() => {
-        let active = true;
-
-        fetchDashboardLinks()
-            .then((dashboardLinks) => {
-                if (active) {
-                    setLinks(dashboardLinks);
-                    setTotals({
-                        totalClicks: dashboardLinks.reduce((sum, link) => sum + link.totalClicks, 0),
-                    });
-                }
-            })
-            .catch(() => {
-                if (active) {
-                    setLinks([]);
-                    setTotals({
-                        totalClicks: 0,
-                    });
-                }
-            });
-
-        return () => {
-            active = false;
-        };
+        const fetchTopLinksToday = async () => {
+            try {
+                const links: ListLink[] = await fetchTodaysTopLink();
+                setLinks(links);
+                const totalClicksToday = links.reduce((sum, link) => sum + link.clicks, 0);
+                setTotals(totalClicksToday);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        void fetchTopLinksToday();
     }, []);
 
     const topPerformingLinks = useMemo(
-        () => [...links].sort((a, b) => b.totalClicks - a.totalClicks).slice(0, 10),
+        () => [...links].sort((a, b) => b.clicks - a.clicks).slice(0, 10),
         [links],
     );
 
-    const showAnalyticsForLink = (link: DashboardLink) => {
-        navigate(`/dashboard/analytics/${encodeURIComponent(link.shortUrl)}`);
+    const showAnalyticsForLink = (link: string) => {
+        navigate(`/dashboard/analytics/${encodeURIComponent(link)}`);
     };
 
     return (
         <>
             <DashboardViewHeader
                 title="Overview"
-                description="Total performance across your shortened links."
+                description="Your top performing links today."
             />
 
             <section className="overview-grid">
                 <article className="overview-card">
-                    <span>Total clicks</span>
-                    <strong>{totals.totalClicks}</strong>
+                    <span>Total Daily Clicks</span>
+                    <strong>{totals}</strong>
                 </article>
             </section>
 
@@ -73,10 +59,12 @@ export default function OverviewContent() {
                 <div className="dashboard-link-list">
                     {topPerformingLinks.map((link) => (
                         <LinkRow
-                            key={link.shortUrl}
-                            link={link}
+                            shortUrl={link.shortUrl}
+                            longUrl={link.longUrl}
+                            dateCreated={link.creationDate}
+                            clicks={link.clicks}
                             selected={false}
-                            onAnalyticsClick={() => showAnalyticsForLink(link)}
+                            onAnalyticsClick={() => showAnalyticsForLink(link.shortUrl)}
                         />
                     ))}
                 </div>

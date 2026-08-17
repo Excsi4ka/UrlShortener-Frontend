@@ -3,13 +3,27 @@ import type {
     DailyClickBucket,
     DashboardLink,
     DashboardOverviewTotals,
-    DeviceClickBucket,
+    DeviceClickBucket, ListLink,
 } from "./Types.ts";
 
 const SHORT_URL_PATTERN = /^[0-9a-zA-Z]{7}$/;
 
 function isValidShortUrl(shortUrl: string): boolean {
     return SHORT_URL_PATTERN.test(shortUrl);
+}
+
+export async function fetchTodaysTopLink() {
+    const response = await fetch("/v1/links/analytics/today", {
+        credentials: "include",
+    })
+
+    const data = await response.json();
+
+    if (!Array.isArray(data)) {
+        throw new Error("Expected an array from the server");
+    }
+
+    return data as ListLink[];
 }
 
 function normalizeDashboardLink(data: unknown): DashboardLink | null {

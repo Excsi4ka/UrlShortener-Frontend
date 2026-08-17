@@ -9,18 +9,18 @@ function formatDateCreated(dateCreated: string) {
     }).format(new Date(dateCreated));
 }
 
-export default function LinkRow({link, selected, onAnalyticsClick}: LinkRowProps) {
-    const shortLinkUrl = `${window.location.origin}/${link.shortUrl}`;
+export default function LinkRow({shortUrl, longUrl, dateCreated, clicks, selected, onAnalyticsClick}: LinkRowProps) {
+    const shortLinkUrl = `${window.location.origin}/${shortUrl}`;
 
     return (
         <article className={`dashboard-link-row ${selected ? "selected" : ""}`}>
             <div className="dashboard-link-info">
-                <a className="dashboard-link-title" href={link.longUrl}>{link.longUrl}</a>
+                <a className="dashboard-link-title" href={longUrl}>{longUrl}</a>
                 <a className="dashboard-short-link" href={shortLinkUrl}>{shortLinkUrl}</a>
-                <span className="dashboard-link-created">Created {formatDateCreated(link.dateCreated)}</span>
+                <span className="dashboard-link-created">Created {formatDateCreated(dateCreated)}</span>
             </div>
             <div className="dashboard-link-actions">
-                <span className="dashboard-click-count">{link.totalClicks}</span>
+                <span className="dashboard-click-count">{clicks}</span>
                 <button
                     className="analytics-button"
                     onClick={onAnalyticsClick}

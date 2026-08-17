@@ -79,8 +79,10 @@ export default function LinksContent() {
                 <div className="dashboard-link-list">
                     {sortedLinks.map((link) => (
                         <LinkRow
-                            key={link.shortUrl}
-                            link={link}
+                            shortUrl={link.shortUrl}
+                            longUrl={link.longUrl}
+                            clicks={link.totalClicks}
+                            dateCreated={link.dateCreated}
                             selected={false}
                             onAnalyticsClick={() => showAnalyticsForLink(link)}
                         />
